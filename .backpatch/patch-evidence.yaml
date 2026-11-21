@@ -1,6 +1,6 @@
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 1.18.13-backpatch-00005
+release: 1.18.13-backpatch-00006
 baseline: v1.18.12+backpatch.baseline
 fixes:
   - cve: CVE-2020-26291
@@ -42,12 +42,20 @@ fixes:
     basis: adapted
     artifacts:
       - urijs
-    note: "New in this release; upstream's fix in 1.19.10 (ac43ca8, a8166fe), adapted to 1.18.12. It closes the advisory: Open Redirect in urijs."
+    note: "Carried from 1.18.13-backpatch-00005; upstream's fix in 1.19.10 (ac43ca8, a8166fe), adapted to 1.18.12. It closes the advisory: Open Redirect in urijs."
+  - cve: CVE-2022-1233
+    upstream_fix_url: https://github.com/medialize/URI.js/commit/88805fd3da03bd7a5e60947adb49d182011f1277
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2022-1233
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-URI.js/compare/3ae64a4~1...e565475
+    basis: adapted
+    artifacts:
+      - urijs
+    note: "New in this release; upstream's fix in 1.19.11, adapted to 1.18.12. It closes the advisory: URL Confusion When Scheme Not Supplied in medialize/uri.js."
 tests:
-  commit: ac87dce4b29f1dd83524c239d35d523d099b746a
+  commit: e5654758bb8db891e0fe61434271c8b87cab0acc
   command: closure-compiler v20170423 rebuilds src/URI.min.js and src/jquery.URI.min.js (equal to the commit's), npm pack --ignore-scripts, then each of the tested commit's test/*.html QUnit pages loaded in jsdom 24.1.3 against the package's src/ and against its min bundles, and test.js's parsing tests against require('urijs'), each test recorded into the JUnit report
   runtime: Node.js v22.23.2, npm 10.9.8, jsdom 24.1.3, closure-compiler v20170423 on Java 1.8.0_382 (Zulu), macOS 27.2 arm64
-  report: urijs-1.18.13-backpatch-00005-tests.zip
-  report_sha256: 592fb563d89f65b680259e92131e1b9a970c5cb928994ba201c48cc55aef0600
+  report: urijs-1.18.13-backpatch-00006-tests.zip
+  report_sha256: 741c9636a2aa81ca582bc32fc647d8b9ea6f9bbc584efe951285512f14b86c7c
   result: pass
-  note: "upstream's 7 QUnit pages (test/*.html) in jsdom through the packed package's src/ and again through its two min bundles, plus test.js's parsing module through require('urijs') at the tested commit: 2459 tests, 2459 passed, 0 failed, 0 skipped. The CVE tests (test/urls.js), with this release's production lines reverted at the tested commit: 169 tests, 167 passed, 2 failed, 0 skipped; with them: 169 tests, 169 passed, 0 failed, 0 skipped. Built with closure-compiler v20170423 (SIMPLE_OPTIMIZATIONS, as the tag's build.js) for the two min bundles, npm pack --ignore-scripts in a directory named urijs, 9 of npmjs's 14 files for 1.18.12 are identical; the rest are package.json, src/URI.js, src/URI.min.js, src/jquery.URI.min.js. The archive's file-origins.yaml maps each packaged file to the commit, or names its inputs and build."
+  note: "upstream's 7 QUnit pages (test/*.html) in jsdom through the packed package's src/ and again through its two min bundles, plus test.js's parsing module through require('urijs') at the tested commit: 2474 tests, 2474 passed, 0 failed, 0 skipped. The CVE tests (test/urls.js), with this release's production lines reverted at the tested commit: 170 tests, 169 passed, 1 failed, 0 skipped; with them: 170 tests, 170 passed, 0 failed, 0 skipped. Built with closure-compiler v20170423 (SIMPLE_OPTIMIZATIONS, as the tag's build.js) for the two min bundles, npm pack --ignore-scripts in a directory named urijs, 9 of npmjs's 14 files for 1.18.12 are identical; the rest are package.json, src/URI.js, src/URI.min.js, src/jquery.URI.min.js. The archive's file-origins.yaml maps each packaged file to the commit, or names its inputs and build."
