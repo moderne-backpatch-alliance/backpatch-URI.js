@@ -234,6 +234,8 @@
     // balanced parens inclusion (), [], {}, <>
     parens: /(\([^\)]*\)|\[[^\]]*\]|\{[^}]*\}|<[^>]*>)/g,
   };
+  // https://infra.spec.whatwg.org/#ascii-tab-or-newline
+  URI.ascii_tab_whitespace = /[\u0009\u000A\u000D]+/g
   // http://www.iana.org/assignments/uri-schemes.html
   // http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports
   URI.defaultPorts = {
@@ -487,6 +489,10 @@
     if (!parts) {
       parts = {};
     }
+
+    // https://infra.spec.whatwg.org/#ascii-tab-or-newline
+    string = string.replace(URI.ascii_tab_whitespace, '')
+
     // [protocol"://"[username[":"password]"@"]hostname[":"port]"/"?][path]["?"querystring]["#"fragment]
 
     // extract fragment
