@@ -1936,6 +1936,104 @@ var urls = [{
         idn: false,
         punycode: false
       }
+    }, {
+      name: 'backslashes authority',
+      url: 'https://attacker.com\\@example.com/some/directory/file.html?query=string#fragment',
+      _url: 'https://attacker.com/@example.com/some/directory/file.html?query=string#fragment',
+      parts: {
+        protocol: 'https',
+        username: null,
+        password: null,
+        hostname: 'attacker.com',
+        port: null,
+        path: '/@example.com/some/directory/file.html',
+        query: 'query=string',
+        fragment: 'fragment'
+      },
+      accessors: {
+        protocol: 'https',
+        username: '',
+        password: '',
+        port: '',
+        path: '/@example.com/some/directory/file.html',
+        query: 'query=string',
+        fragment: 'fragment',
+        resource: '/@example.com/some/directory/file.html?query=string#fragment',
+        authority: 'attacker.com',
+        origin: 'https://attacker.com',
+        userinfo: '',
+        subdomain: '',
+        domain: 'attacker.com',
+        tld: 'com',
+        directory: '/@example.com/some/directory',
+        filename: 'file.html',
+        suffix: 'html',
+        hash: '#fragment',
+        search: '?query=string',
+        host: 'attacker.com',
+        hostname: 'attacker.com'
+      },
+      is: {
+        urn: false,
+        url: true,
+        relative: false,
+        name: true,
+        sld: false,
+        ip: false,
+        ip4: false,
+        ip6: false,
+        idn: false,
+        punycode: false
+      }
+    }, {
+      name: 'backslashes authority, no ending slash',
+      url: 'https://attacker.com\\@example.com',
+      _url: 'https://attacker.com/@example.com',
+      parts: {
+        protocol: 'https',
+        username: null,
+        password: null,
+        hostname: 'attacker.com',
+        port: null,
+        path: '/@example.com',
+        query: null,
+        fragment: null
+      },
+      accessors: {
+        protocol: 'https',
+        username: '',
+        password: '',
+        port: '',
+        path: '/@example.com',
+        query: '',
+        fragment: '',
+        resource: '/@example.com',
+        authority: 'attacker.com',
+        origin: 'https://attacker.com',
+        userinfo: '',
+        subdomain: '',
+        domain: 'attacker.com',
+        tld: 'com',
+        directory: '/',
+        filename: '@example.com',
+        suffix: 'com',
+        hash: '',
+        search: '',
+        host: 'attacker.com',
+        hostname: 'attacker.com'
+      },
+      is: {
+        urn: false,
+        url: true,
+        relative: false,
+        name: true,
+        sld: false,
+        ip: false,
+        ip4: false,
+        ip6: false,
+        idn: false,
+        punycode: false
+      }
     }
 ];
 
